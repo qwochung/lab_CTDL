@@ -1,0 +1,37 @@
+package lab_1_MyArrays;
+
+
+public class MyArrays {
+	private int [] array;
+
+	public MyArrays(int[] array) {
+		super();
+		this.array = array;
+	}
+	
+
+	
+	public int [] mirror( ) {
+		int [] result = new int [array.length *2];
+		for (int i = 0; i < array.length; i++) {
+			result [i] =  array [i];
+		}
+		
+		for (int i = result.length -1; i >= array.length ; i--) {
+			result [i] = array [i  - array.length ];
+		}
+		
+		
+		return result;
+		  
+		
+		
+	}
+	
+	
+	
+	public static void main(String[] args) {
+		MyArrays myArrays = new MyArrays(new int [] {1,2,3});
+		System.out.println(myArrays.mirror().toString());
+	}
+}
