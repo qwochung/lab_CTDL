@@ -1,0 +1,119 @@
+package lab_1_MyArrays;
+
+public class MyCaesar {
+	public static final char[] ALPHABET = { 'A', 'B', 'C', 'D', 'E', 'F',
+			'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O',
+			'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z' };
+	
+	
+	
+	int n;
+	public MyCaesar(int shiftSteps) {
+		super();
+		this.n = shiftSteps;
+	}
+	
+	
+	
+	
+	// Encrypt a character according to the given shif steps.
+	// Encrypt: En(x) = (x + n) mod 26. x represents the index of c in the ALPHABET
+	// array
+	public char encryptChar(char c) {
+		char result = Character.toUpperCase(c);
+		for (int i = 0; i < ALPHABET.length; i++) {
+			if (result == ' ') {
+				break;
+			}
+			
+			if (result == ALPHABET[i] &&((i+n)>= ALPHABET.length )) {
+				result = ALPHABET[(i + n) - ALPHABET.length ];
+				break;
+			}
+			
+			if (result == ALPHABET[i]) {
+				result = ALPHABET[i + n];
+				break;
+			}
+		}
+		return result;
+		
+		
+		
+	}
+	
+	
+	
+	
+	// Decrypt a character according to the given shif steps.
+	// Decrypt: Dn(x) = (x – n) mod 26. x represents the index of c in the ALPHABET array
+	
+	public char decryptChar(char c) {
+		char result = Character.toUpperCase(c);
+		for (int i = 0; i < ALPHABET.length; i++) {
+			if (result == ' ') {
+				break;
+			}
+			
+			if (result == ALPHABET[i] &&((i-n)< 0 ) ) {
+				result = ALPHABET[(ALPHABET.length - (n -i)) ];
+				break;
+			}
+			
+			if (result == ALPHABET[i]) {
+				result = ALPHABET[i- n];
+				break;
+			}
+		}
+		return result;
+	}
+	
+	
+	// Encrypt a text using the above function for encrypting a charater.
+	public String encrypt(String input) {
+		String result="";
+		for (int i = 0; i < input.length(); i++) {
+			char c = input.charAt(i);
+			result += encryptChar(c);
+		}
+		
+		
+		
+		return result;
+	}
+
+	
+	
+	
+	
+	
+
+	
+	
+	
+	
+
+	public static void main(String[] args) {
+		
+		//test encryptChar
+		MyCaesar stepCaesar = new MyCaesar(3);
+		System.out.println(stepCaesar.ALPHABET.length);
+		System.out.println(stepCaesar.encryptChar('c'));
+		
+		
+		// test decryptChar
+		System.out.println(stepCaesar.decryptChar('a'));
+		
+		
+		// test encrypt
+		
+		MyCaesar encrypt = new MyCaesar(2);
+		System.out.println(encrypt.encrypt("Tran Quoc Hung "));
+		
+		
+		
+		
+	}
+	
+	
+}
