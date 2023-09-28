@@ -1,6 +1,7 @@
 package lab_1_MyArrays;
 
 import java.util.Arrays;
+import java.util.Iterator;
 
 
 public class MyArrays {
@@ -128,7 +129,66 @@ public class MyArrays {
 	
 	
 	
+	// Input: 10 11 12 -1 14 10 17 19 20
+	// Output(k=3): 10 11 12 12 14 10 17 19 20
+	public int[] fillMissingValues(int k) {
+		int[] result =new int[array.length];
+		
+		for (int i = 0; i < array.length; i++) {
+			int j = array[i];
+			
+			if (j == -1 ) {
+				if (i==0 ) {
+					result[i]= (array[i+1]+ array[i+2] + array[i+3])/3;
+					continue;
+				}
+				if (i == array.length -1) {
+					result[i]= (array[i-1]+ array[i-2] + array[i-3])/3;
+					continue;
+				}
+				else {
+					result[i]= findMinNumber(i ,k);
+					
+					continue;
+				}
+			}
+			
+			result[i] = j;
+		}
+		
+		
+		return result;
+	}
 	
+	
+	public int findMinNumber(int i, int k) {
+		if (i-(k-1)<0) {
+			for (int j = 0; j < array.length; j++) {
+				
+			}
+			return (array[i-1]+ array[i+1] + array[i+2])/3;
+		}
+		
+		if (i + 2 > array.length-1) {
+			return (array[i-1]+ array[i-2] + array[i+1])/3;
+		}
+		else {
+			double a = ((array[i-1]+ array[i-2] + array[i+1])/3.0);
+			double b = ((array[i-1]+ array[i+1] + array[i+2])/3.0);
+			System.out.println( a);
+			System.out.println( b);
+			if (a > b) {
+				return (int)b;
+				}
+			else {
+				return (int)a;
+			}
+		}
+		
+		
+		
+		
+	}
 	
 
 
@@ -149,6 +209,13 @@ public class MyArrays {
 		
 		MyArrays test2 = new MyArrays( new int []{10, 11 ,12 ,13 ,14 ,16 ,17, 19 ,20});
 		System.out.println(Arrays.toString(test2.getMissingValues()));
+		
+		
+		
+		MyArrays test3 = new MyArrays( new int []{10, 11, 12 ,-1 ,14 ,10 ,17 ,19 ,20});
+		System.out.println(Arrays.toString(test3.fillMissingValues(3)));
+		
+		
 		
 	}
 }
