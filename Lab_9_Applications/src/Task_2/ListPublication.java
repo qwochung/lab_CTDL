@@ -232,8 +232,7 @@ public class ListPublication {
 //			System.out.println(listpPublications.increaseSort());
 //			listpPublications.decreaseSort();
 //			System.out.println(listpPublications.toString());
-			System.out.println(listpPublications.statistical().toString());
-			
+//			System.out.println(listpPublications.statistical().toString());
 			
 	}
 
